@@ -3,6 +3,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/dist/plugin').default
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+const babelConfig = {
+  cacheDirectory: true,
+  presets: [],
+  plugins: []
+}
+
 module.exports = {
   mode: 'development',
   entry: './examples/index.js',
@@ -10,13 +16,31 @@ module.exports = {
     rules: [
       {
         test: /\.(vue)$/,
-        loader: 'vue-loader',
+        loader: 'vue-loader'
+      },
+      {
+        test: /\.(ts|tsx)?$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: babelConfig
+          },
+          {
+            loader: 'ts-loader',
+            options: {
+              transpileOnly: true,
+              appendTsSuffixTo: [/\.vue$/],
+              happyPackMode: false
+            }
+          }
+        ]
       },
       {
         test: /\.(js|jsx)$/,
-        loader: 'babel-loader',
         exclude: /node_modules/,
-        options: {}
+        loader: 'babel-loader',
+        options: babelConfig
       },
       {
         test: /\.less$/,
@@ -35,7 +59,7 @@ module.exports = {
             options: {
               lessOptions: {
                 sourceMap: true,
-                javascriptEnabled: true,
+                javascriptEnabled: true
               }
             }
           }
@@ -50,7 +74,7 @@ module.exports = {
               hmr: true
             }
           },
-          'css-loader',
+          'css-loader'
         ]
       }
     ]
@@ -59,15 +83,18 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'examples/index.html',
       filename: 'index.html',
-      inject: true,
+      inject: true
     }),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
-      filename: '[name].css',
+      filename: '[name].css'
     })
   ],
   resolve: {
-    alias: {}
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue', '.json'],
+    alias: {
+      'ori': resolve(__dirname, './components')
+    }
   },
   devServer: {
     historyApiFallback: {
@@ -75,6 +102,6 @@ module.exports = {
     },
     disableHostCheck: true,
     hot: true,
-    open: true,
+    open: true
   }
 }

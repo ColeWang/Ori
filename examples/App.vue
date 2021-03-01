@@ -2,11 +2,14 @@
   <div>Hello World</div>
 </template>
 
-<script>
-  export default {
+<script lang="ts">
+  import { defineComponent } from 'vue'
+  import { test } from './test'
+
+  export default defineComponent({
     name: 'App',
     setup () {
-      console.log(123)
+      test({ name: '123' })
     }
-  }
+  })
 </script>

@@ -1,5 +1,32 @@
 {
-  "compilerOptions": {},
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "ori": [
+        "components"
+      ]
+    },
+    "strict": true,
+    "target": "esnext",
+    "lib": [
+      "esnext",
+      "dom"
+    ],
+    "jsx": "preserve",
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
+    "allowJs": true
+  },
+  "include": [
+    "components/**/*.ts",
+    "components/**/*.tsx",
+    "components/**/*.vue"
+  ],
   "exclude": [
     "node_modules"
   ]
