@@ -1,5 +1,5 @@
 <template>
-  <div>Hello World</div>
+  <div class="hello">Hello World</div>
 </template>
 
 <script lang="ts">
@@ -13,3 +13,9 @@
     }
   })
 </script>
+
+<style lang="less">
+  .hello {
+    background: pink;
+  }
+</style>
