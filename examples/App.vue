@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <div>
-      <o-input></o-input>
+      <o-input v-model:value="test"></o-input>
     </div>
     <div>
       <o-button>按钮</o-button>
@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue'
+  import { defineComponent, ref, Ref, watchEffect } from 'vue'
   import { Button, Input } from 'ori'
 
   export default defineComponent({
@@ -20,7 +20,15 @@
       [Input.name]: Input
     },
     setup () {
-      console.log('123')
+      const test: Ref<string> = ref('')
+
+      watchEffect(() => {
+        console.log(test.value)
+      })
+
+      return {
+        test
+      }
     }
   })
 </script>
