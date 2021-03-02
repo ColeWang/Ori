@@ -1,7 +1,5 @@
 <template>
-  <button class="ori-btn">
-    <slot></slot>
-  </button>
+  <input type="text">
 </template>
 
 <script lang="ts">
@@ -9,9 +7,6 @@
   import './style/index.less'
 
   export default defineComponent({
-    name: 'OButton',
-    setup () {
-      console.log('button')
-    }
+    name: 'OInput'
   })
 </script>
