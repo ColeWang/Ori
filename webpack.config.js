@@ -11,7 +11,9 @@ const babelConfig = {
 
 module.exports = {
   mode: 'development',
-  entry: './examples/index.js',
+  entry: {
+    app: './examples/index.js'
+  },
   module: {
     rules: [
       {
@@ -76,6 +78,13 @@ module.exports = {
           },
           'css-loader'
         ]
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]?[hash]'
+        }
       }
     ]
   },
